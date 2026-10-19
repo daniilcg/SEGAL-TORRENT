@@ -7,10 +7,15 @@ Site: https://daniilcg.github.io/SEGAL-TORRENT/
 
 ## Interface
 
-Russian and English.
+Russian, light and dark.
 
-![Russian](docs/screen-ru.png)
-![English](docs/screen-en.png)
+![Russian light](docs/screen-ru.png)
+![Russian dark](docs/screen-ru-dark.png)
+
+English, light and dark.
+
+![English light](docs/screen-en.png)
+![English dark](docs/screen-en-dark.png)
 
 ## Download
 

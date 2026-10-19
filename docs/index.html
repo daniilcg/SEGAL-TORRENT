@@ -121,6 +121,8 @@
     }
     .shots { padding: 12px 0 8px; }
     .shots h2 { margin: 0 0 16px; font-size: 28px; letter-spacing: -0.02em; }
+    .lang-block { margin: 0 0 22px; }
+    .lang-block h3 { margin: 0 0 10px; font-size: 14px; letter-spacing: 0.08em; color: var(--dim); }
     .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .shot {
       margin: 0;
@@ -229,15 +231,31 @@
     </section>
     <section class="shots" id="shots">
       <h2 data-ru="Русский и английский" data-en="Russian and English">Русский и английский</h2>
-      <div class="pair">
-        <figure class="shot">
-          <img src="screen-ru.png" alt="SEGAL-TORRENT, русский интерфейс">
-          <span>RU</span>
-        </figure>
-        <figure class="shot">
-          <img src="screen-en.png" alt="SEGAL-TORRENT, English interface">
-          <span>EN</span>
-        </figure>
+      <div class="lang-block">
+        <h3>RU</h3>
+        <div class="pair">
+          <figure class="shot">
+            <img src="screen-ru.png" alt="SEGAL-TORRENT, светлая тема, русский">
+            <span data-ru="Светлая" data-en="Light">Светлая</span>
+          </figure>
+          <figure class="shot">
+            <img src="screen-ru-dark.png" alt="SEGAL-TORRENT, тёмная тема, русский">
+            <span data-ru="Тёмная" data-en="Dark">Тёмная</span>
+          </figure>
+        </div>
+      </div>
+      <div class="lang-block">
+        <h3>EN</h3>
+        <div class="pair">
+          <figure class="shot">
+            <img src="screen-en.png" alt="SEGAL-TORRENT, light theme, English">
+            <span data-ru="Светлая" data-en="Light">Светлая</span>
+          </figure>
+          <figure class="shot">
+            <img src="screen-en-dark.png" alt="SEGAL-TORRENT, dark theme, English">
+            <span data-ru="Тёмная" data-en="Dark">Тёмная</span>
+          </figure>
+        </div>
       </div>
     </section>
     <section class="grid" id="features">

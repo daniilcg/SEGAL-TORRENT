@@ -119,6 +119,24 @@
       color: var(--muted);
       font-size: 13px;
     }
+    .shots { padding: 12px 0 8px; }
+    .shots h2 { margin: 0 0 16px; font-size: 28px; letter-spacing: -0.02em; }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .shot {
+      margin: 0;
+      background: var(--elev);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .shot img { width: 100%; display: block; }
+    .shot span {
+      display: block;
+      padding: 10px 14px 12px;
+      color: var(--dim);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -170,7 +188,7 @@
       nav { display: none; }
       .hero { grid-template-columns: 1fr; padding-top: 40px; }
       .mark { justify-self: start; width: min(100%, 280px); }
-      .grid { grid-template-columns: 1fr; }
+      .grid, .pair { grid-template-columns: 1fr; }
       main { width: min(1080px, calc(100% - 32px)); }
     }
   </style>
@@ -183,6 +201,7 @@
       SEGAL-TORRENT
     </a>
     <nav>
+      <a href="#shots" data-ru="Интерфейс" data-en="Interface">Интерфейс</a>
       <a href="#features" data-ru="Возможности" data-en="Features">Возможности</a>
       <a href="#start" data-ru="Как начать" data-en="Get started">Как начать</a>
       <a href="https://github.com/daniilcg/SEGAL-TORRENT" data-ru="Код" data-en="Code">Код</a>
@@ -207,6 +226,19 @@
         <p class="file">SEGAL-TORRENT.exe · 49.9 MB · Windows 10/11 · <a href="https://github.com/daniilcg/SEGAL-TORRENT/blob/opensource/download/SEGAL-TORRENT.exe" data-ru="файл в репозитории" data-en="file in the repository">файл в репозитории</a></p>
       </div>
       <img class="mark" src="logo.png" alt="SEGAL-TORRENT">
+    </section>
+    <section class="shots" id="shots">
+      <h2 data-ru="Русский и английский" data-en="Russian and English">Русский и английский</h2>
+      <div class="pair">
+        <figure class="shot">
+          <img src="screen-ru.png" alt="SEGAL-TORRENT, русский интерфейс">
+          <span>RU</span>
+        </figure>
+        <figure class="shot">
+          <img src="screen-en.png" alt="SEGAL-TORRENT, English interface">
+          <span>EN</span>
+        </figure>
+      </div>
     </section>
     <section class="grid" id="features">
       <article>

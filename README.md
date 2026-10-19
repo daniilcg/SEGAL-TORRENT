@@ -3,7 +3,11 @@
 Fast Windows torrent client. Russian and English, dark and light themes. No account.
 
 Developer: Dan Segal  
-Site: https://segal.run
+Site: https://daniilcg.github.io/SEGAL-TORRENT/
+
+## Download
+
+Windows 10/11: [SEGAL-TORRENT.exe](https://github.com/daniilcg/SEGAL-TORRENT/releases/download/v1.0.0/SEGAL-TORRENT.exe) (49.9 MB). The same file is stored at [download/SEGAL-TORRENT.exe](download/SEGAL-TORRENT.exe).
 
 ## Run from source
 

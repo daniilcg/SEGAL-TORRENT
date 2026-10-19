@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SEGAL-TORRENT — быстрый торрент-клиент для Windows</title>
+  <meta name="description" content="SEGAL-TORRENT — простой клиент для .torrent и magnet на Windows. Русский и английский, тёмная и светлая тема, без регистрации. Dan Segal.">
+  <meta name="theme-color" content="#1E1F22">
+  <link rel="icon" href="favicon.ico">
+  <style>
+    :root {
+      --bg: #1E1F22;
+      --elev: #2B2D30;
+      --hover: #393B40;
+      --border: #43454A;
+      --text: #DFE1E5;
+      --dim: #9DA0A8;
+      --muted: #6F737A;
+      --accent: #3574F0;
+      --accent-hover: #4B86F5;
+      --green: #499C54;
+      --on: #FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    .bar {
+      height: 2px;
+      background: var(--accent);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 28px;
+      background: rgba(30, 31, 34, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .brand img { width: 28px; height: 28px; border-radius: 6px; }
+    nav { display: flex; gap: 18px; margin-left: 12px; }
+    nav a { color: var(--dim); text-decoration: none; }
+    nav a:hover { color: var(--text); }
+    .spacer { flex: 1; }
+    .langs { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .langs button {
+      border: 0;
+      background: transparent;
+      color: var(--dim);
+      font: inherit;
+      padding: 6px 10px;
+    }
+    .langs button.active { background: var(--hover); color: var(--text); }
+    main { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      padding: 72px 0 36px;
+    }
+    .mark {
+      width: min(100%, 420px);
+      justify-self: end;
+      border-radius: 28px;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 650;
+    }
+    .lead { margin: 0 0 28px; max-width: 38rem; color: var(--dim); font-size: 18px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--on);
+      text-decoration: none;
+      font-weight: 650;
+      padding: 12px 18px;
+      border-radius: 8px;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .ghost {
+      display: inline-flex;
+      align-items: center;
+      color: var(--text);
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .ghost:hover { background: var(--hover); }
+    .file {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 28px 0 64px;
+    }
+    article {
+      background: var(--elev);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 18px 18px;
+    }
+    article h2 { margin: 0 0 8px; font-size: 16px; font-weight: 650; }
+    article p { margin: 0; color: var(--dim); }
+    .steps { padding-bottom: 72px; }
+    .steps h2 { margin: 0 0 16px; font-size: 28px; letter-spacing: -0.02em; }
+    ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    li {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 12px;
+      align-items: center;
+      background: var(--elev);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .n {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #2E436E;
+      color: var(--on);
+      font-weight: 650;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 22px 28px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      color: var(--dim);
+    }
+    footer a { color: var(--text); }
+    @media (max-width: 800px) {
+      header { padding: 12px 16px; }
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 40px; }
+      .mark { justify-self: start; width: min(100%, 280px); }
+      .grid { grid-template-columns: 1fr; }
+      main { width: min(1080px, calc(100% - 32px)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar"></div>
+  <header>
+    <a class="brand" href="#top">
+      <img src="icon.png" alt="">
+      SEGAL-TORRENT
+    </a>
+    <nav>
+      <a href="#features" data-ru="Возможности" data-en="Features">Возможности</a>
+      <a href="#start" data-ru="Как начать" data-en="Get started">Как начать</a>
+      <a href="https://github.com/daniilcg/SEGAL-TORRENT" data-ru="Код" data-en="Code">Код</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" id="lang-ru" class="active">RU</button>
+      <button type="button" id="lang-en">EN</button>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div>
+        <h1 data-ru="Торренты без лишнего." data-en="Torrents, nothing extra.">Торренты без лишнего.</h1>
+        <p class="lead" data-ru="Простой и быстрый клиент для Windows. Открывает .torrent и magnet, показывает прогресс, говорит по-русски и по-английски. Регистрация не нужна." data-en="A simple, fast Windows client. It opens .torrent files and magnet links, shows progress, and speaks Russian and English. No account.">Простой и быстрый клиент для Windows. Открывает .torrent и magnet, показывает прогресс, говорит по-русски и по-английски. Регистрация не нужна.</p>
+        <div class="actions">
+          <a class="btn" href="https://github.com/daniilcg/SEGAL-TORRENT/releases/download/v1.0.0/SEGAL-TORRENT.exe">
+            <span data-ru="Скачать для Windows" data-en="Download for Windows">Скачать для Windows</span>
+          </a>
+          <a class="ghost" href="https://github.com/daniilcg/SEGAL-TORRENT" data-ru="Исходный код" data-en="Source code">Исходный код</a>
+        </div>
+        <p class="file">SEGAL-TORRENT.exe · 49.9 MB · Windows 10/11 · <a href="https://github.com/daniilcg/SEGAL-TORRENT/raw/opensource/download/SEGAL-TORRENT.exe" data-ru="файл в репозитории" data-en="file in the repository">файл в репозитории</a></p>
+      </div>
+      <img class="mark" src="logo.png" alt="SEGAL-TORRENT">
+    </section>
+    <section class="grid" id="features">
+      <article>
+        <h2 data-ru="Один файл" data-en="One file">Один файл</h2>
+        <p data-ru="Скачали exe и запустили. Установщик не нужен." data-en="Download the exe and run it. No installer.">Скачали exe и запустили. Установщик не нужен.</p>
+      </article>
+      <article>
+        <h2 data-ru="Два языка" data-en="Two languages">Два языка</h2>
+        <p data-ru="Интерфейс на русском и английском, переключается в окне." data-en="The interface is Russian and English, and switches inside the window.">Интерфейс на русском и английском, переключается в окне.</p>
+      </article>
+      <article>
+        <h2 data-ru="Две темы" data-en="Two themes">Две темы</h2>
+        <p data-ru="Тёмная и светлая, в цветах знакомой среды разработки." data-en="Dark and light, in the colors of a familiar development environment.">Тёмная и светлая, в цветах знакомой среды разработки.</p>
+      </article>
+      <article>
+        <h2 data-ru="Прогресс на виду" data-en="Progress in view">Прогресс на виду</h2>
+        <p data-ru="Скорость, пиры, сиды, трекеры и список файлов." data-en="Speed, peers, seeds, trackers, and the file list.">Скорость, пиры, сиды, трекеры и список файлов.</p>
+      </article>
+      <article>
+        <h2 data-ru="Папка запоминается" data-en="The folder stays">Папка запоминается</h2>
+        <p data-ru="Следующий торрент предлагается сохранить туда же." data-en="The next torrent is offered to the same save folder.">Следующий торрент предлагается сохранить туда же.</p>
+      </article>
+      <article>
+        <h2 data-ru="Без аккаунта" data-en="No account">Без аккаунта</h2>
+        <p data-ru="Можно сделать программой по умолчанию для .torrent и magnet." data-en="You can make it the default app for .torrent files and magnet links.">Можно сделать программой по умолчанию для .torrent и magnet.</p>
+      </article>
+    </section>
+    <section class="steps" id="start">
+      <h2 data-ru="Как начать" data-en="Get started">Как начать</h2>
+      <ol>
+        <li><span class="n">1</span><span data-ru="Скачайте SEGAL-TORRENT.exe." data-en="Download SEGAL-TORRENT.exe.">Скачайте SEGAL-TORRENT.exe.</span></li>
+        <li><span class="n">2</span><span data-ru="Откройте файл. Windows может один раз спросить подтверждение: подписи у файла нет." data-en="Open the file. Windows may ask once, because the file is not signed.">Откройте файл. Windows может один раз спросить подтверждение: подписи у файла нет.</span></li>
+        <li><span class="n">3</span><span data-ru="Добавьте .torrent или magnet-ссылку и выберите папку." data-en="Add a .torrent file or a magnet link and choose a folder.">Добавьте .torrent или magnet-ссылку и выберите папку.</span></li>
+      </ol>
+    </section>
+  </main>
+  <footer>
+    <span data-ru="Разработчик" data-en="Developer">Разработчик</span>
+    <a href="https://segal.run">Dan Segal</a>
+    <a href="https://segal.run">segal.run</a>
+    <span>MIT</span>
+    <a href="https://github.com/daniilcg/SEGAL-TORRENT">GitHub</a>
+  </footer>
+  <script>
+    const buttons = { ru: document.getElementById("lang-ru"), en: document.getElementById("lang-en") };
+    const titles = {
+      ru: "SEGAL-TORRENT — быстрый торрент-клиент для Windows",
+      en: "SEGAL-TORRENT — a fast Windows torrent client"
+    };
+    function apply(lang) {
+      document.documentElement.lang = lang;
+      document.title = titles[lang];
+      document.querySelectorAll("[data-ru]").forEach((node) => {
+        node.textContent = node.getAttribute(lang === "en" ? "data-en" : "data-ru");
+      });
+      buttons.ru.classList.toggle("active", lang === "ru");
+      buttons.en.classList.toggle("active", lang === "en");
+      try { localStorage.setItem("segal-torrent-lang", lang); } catch (error) {}
+    }
+    buttons.ru.addEventListener("click", () => apply("ru"));
+    buttons.en.addEventListener("click", () => apply("en"));
+    let saved = "ru";
+    try { saved = localStorage.getItem("segal-torrent-lang") || "ru"; } catch (error) {}
+    if (saved === "en") apply("en");
+  </script>
+</body>
+</html>

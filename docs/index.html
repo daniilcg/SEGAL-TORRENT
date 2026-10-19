@@ -230,9 +230,8 @@
       <img class="mark" src="logo.png" alt="SEGAL-TORRENT">
     </section>
     <section class="shots" id="shots">
-      <h2 data-ru="Русский и английский" data-en="Russian and English">Русский и английский</h2>
-      <div class="lang-block">
-        <h3>RU</h3>
+      <h2 data-ru="Светлая и тёмная" data-en="Light and dark">Светлая и тёмная</h2>
+      <div class="lang-block" data-shots="ru">
         <div class="pair">
           <figure class="shot">
             <img src="screen-ru.png" alt="SEGAL-TORRENT, светлая тема, русский">
@@ -244,8 +243,7 @@
           </figure>
         </div>
       </div>
-      <div class="lang-block">
-        <h3>EN</h3>
+      <div class="lang-block" data-shots="en" hidden>
         <div class="pair">
           <figure class="shot">
             <img src="screen-en.png" alt="SEGAL-TORRENT, light theme, English">
@@ -311,6 +309,9 @@
       document.title = titles[lang];
       document.querySelectorAll("[data-ru]").forEach((node) => {
         node.textContent = node.getAttribute(lang === "en" ? "data-en" : "data-ru");
+      });
+      document.querySelectorAll("[data-shots]").forEach((node) => {
+        node.hidden = node.getAttribute("data-shots") !== lang;
       });
       buttons.ru.classList.toggle("active", lang === "ru");
       buttons.en.classList.toggle("active", lang === "en");
